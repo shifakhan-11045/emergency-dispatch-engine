@@ -1,19 +1,15 @@
-import com.emergency.engine.*;
+import com.emergency.engine.CityBuilder;
+import com.emergency.engine.CityGraph;
+
 public class App {
-    public static void main(String[] args) throws Exception {
-    
-    CityGraph graph = new CityGraph();
 
-    Location a = new Location("A", "Hospital");
-    Location b = new Location("B", "Market");
-    Location c = new Location("C", "Highway");
+    public static void main(String[] args) {
 
-    graph.addRoad(a, b, 5);
-    graph.addRoad(b, c, 7);
-    graph.addRoad(a, c, 12);
+        CityBuilder cityBuilder = new CityBuilder();
+        CityGraph graph = cityBuilder.buildCity();
 
-    graph.printGraph();
-   System.out.println("Graph created successfully");
+        graph.printGraph();
 
+        System.out.println("City loaded dynamically");
     }
 }
