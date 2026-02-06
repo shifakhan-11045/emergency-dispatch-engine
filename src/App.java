@@ -2,13 +2,19 @@ public class App {
 
     public static void main(String[] args) {
 
-        CityDataProvider provider =
+        // 1️⃣ Build city
+        ConsoleCityDataProvider cityProvider =
                 new ConsoleCityDataProvider();
-                // or new SampleCityDataProvider();
 
-        CityGraph graph = provider.buildCity();
-        graph.printGraph();
+        CityGraph cityGraph = cityProvider.buildCity();
 
-        System.out.println("City loaded successfully");
+        System.out.println("\nCity Graph:");
+        cityGraph.printGraph();
+
+        // 2️⃣ Now handle emergencies
+        ConsoleInputHandler emergencyHandler =
+                new ConsoleInputHandler(cityGraph);
+
+        emergencyHandler.takeEmergencyInput();
     }
 }

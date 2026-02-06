@@ -1,37 +1,52 @@
 import java.time.LocalDateTime;
 
 public class Emergency {
+
     private final String id;
-    private final String description;
-    private final String location;
-    private int severity; // initial severity, will compute later
+    private final EmergencyType type;
+    private final Severity severity;
+    private final Location location;
     private final LocalDateTime reportedAt;
 
-    public Emergency(String id, String description, String location, int severity) {
+    public Emergency(String id,
+                     EmergencyType type,
+                     Severity severity,
+                     Location location) {
+
         this.id = id;
-        this.description = description;
-        this.location = location;
+        this.type = type;
         this.severity = severity;
+        this.location = location;
         this.reportedAt = LocalDateTime.now();
     }
 
-    // Getters
-    public String getId() { return id; }
-    public String getDescription() { return description; }
-    public String getLocation() { return location; }
-    public int getSeverity() { return severity; }
-    public LocalDateTime getReportedAt() { return reportedAt; }
+    public String getId() {
+        return id;
+    }
 
-    // Setter for severity
-    public void setSeverity(int severity) { this.severity = severity; }
+    public EmergencyType getType() {
+        return type;
+    }
+
+    public Severity getSeverity() {
+        return severity;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public LocalDateTime getReportedAt() {
+        return reportedAt;
+    }
 
     @Override
     public String toString() {
         return "Emergency{" +
                 "id='" + id + '\'' +
-                ", description='" + description + '\'' +
-                ", location='" + location + '\'' +
+                ", type=" + type +
                 ", severity=" + severity +
+                ", location=" + location.getName() +
                 ", reportedAt=" + reportedAt +
                 '}';
     }
