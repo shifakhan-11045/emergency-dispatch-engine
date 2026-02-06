@@ -1,0 +1,7 @@
+{
+    "java.project.sourcePaths": [
+        "emergency-dispatch-engine\\src\\com\\emergency\\engine",
+        "src"
+    ],
+    "java.project.referencedLibraries": []
+}
