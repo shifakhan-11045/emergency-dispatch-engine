@@ -7,10 +7,13 @@ public class ConsoleInputHandler {
     private final CityGraph cityGraph;
     private final Scanner scanner;
     private final List<Emergency> emergencies = new ArrayList<>();
+    private final EmergencyManager emergencyManager;
 
-    public ConsoleInputHandler(CityGraph cityGraph, Scanner scanner) {
+    public ConsoleInputHandler(CityGraph cityGraph, Scanner scanner,
+                               EmergencyManager emergencyManager) {
         this.cityGraph = cityGraph;
         this.scanner = scanner;
+        this.emergencyManager = emergencyManager;
     }
 
     public void takeEmergencyInput() {

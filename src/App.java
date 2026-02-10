@@ -15,10 +15,13 @@ public class App {
         System.out.println("\nCity Graph:");
         cityGraph.printGraph();
 
-        // 2️⃣ Now handle emergencies
+        // 2️⃣ Emergency system
+        EmergencyManager emergencyManager = new EmergencyManager();
+
         ConsoleInputHandler emergencyHandler =
-                new ConsoleInputHandler(cityGraph, sc);
+                new ConsoleInputHandler(cityGraph, sc, emergencyManager);
 
         emergencyHandler.takeEmergencyInput();
+        emergencyManager.dispatchEmergency();
     }
 }
