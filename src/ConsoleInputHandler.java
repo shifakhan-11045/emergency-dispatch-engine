@@ -5,11 +5,12 @@ import java.util.Scanner;
 public class ConsoleInputHandler {
 
     private final CityGraph cityGraph;
-    private final Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner;
     private final List<Emergency> emergencies = new ArrayList<>();
 
-    public ConsoleInputHandler(CityGraph cityGraph) {
+    public ConsoleInputHandler(CityGraph cityGraph, Scanner scanner) {
         this.cityGraph = cityGraph;
+        this.scanner = scanner;
     }
 
     public void takeEmergencyInput() {

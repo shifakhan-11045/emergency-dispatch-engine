@@ -1,10 +1,14 @@
+import java.util.Scanner;
+
 public class App {
 
     public static void main(String[] args) {
 
         // 1️⃣ Build city
+        Scanner sc = new Scanner(System.in);
+
         ConsoleCityDataProvider cityProvider =
-                new ConsoleCityDataProvider();
+                new ConsoleCityDataProvider(sc);
 
         CityGraph cityGraph = cityProvider.buildCity();
 
@@ -13,7 +17,7 @@ public class App {
 
         // 2️⃣ Now handle emergencies
         ConsoleInputHandler emergencyHandler =
-                new ConsoleInputHandler(cityGraph);
+                new ConsoleInputHandler(cityGraph, sc);
 
         emergencyHandler.takeEmergencyInput();
     }
