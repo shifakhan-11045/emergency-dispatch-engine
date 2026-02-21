@@ -8,11 +8,7 @@ public class Emergency {
     private final Location location;
     private final LocalDateTime reportedAt;
 
-    public Emergency(String id,
-                     EmergencyType type,
-                     Severity severity,
-                     Location location) {
-
+    public Emergency(String id, EmergencyType type, Severity severity, Location location) {
         this.id = id;
         this.type = type;
         this.severity = severity;

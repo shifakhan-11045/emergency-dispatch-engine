@@ -4,9 +4,9 @@ public class App {
 
     public static void main(String[] args) {
 
-        // 1️⃣ Build city
         Scanner sc = new Scanner(System.in);
 
+        // 1️⃣ Build city
         ConsoleCityDataProvider cityProvider =
                 new ConsoleCityDataProvider(sc);
 
@@ -21,7 +21,16 @@ public class App {
         ConsoleInputHandler emergencyHandler =
                 new ConsoleInputHandler(cityGraph, sc, emergencyManager);
 
-        emergencyHandler.takeEmergencyInput();
-        emergencyManager.dispatchEmergency();
+        // 🔥 Ask how many emergencies
+        System.out.print("\nHow many emergencies to register? ");
+        int count = Integer.parseInt(sc.nextLine());
+
+        for (int i = 1; i <= count; i++) {
+            System.out.println("\nEnter details for Emergency " + i);
+            emergencyHandler.takeEmergencyInput();
+        }
+
+        // 🚑 Dispatch all
+        emergencyManager.dispatchAllEmergencies();
     }
 }

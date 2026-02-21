@@ -1,15 +1,13 @@
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class ConsoleInputHandler {
 
     private final CityGraph cityGraph;
     private final Scanner scanner;
-    private final List<Emergency> emergencies = new ArrayList<>();
     private final EmergencyManager emergencyManager;
 
-    public ConsoleInputHandler(CityGraph cityGraph, Scanner scanner,
+    public ConsoleInputHandler(CityGraph cityGraph,
+                               Scanner scanner,
                                EmergencyManager emergencyManager) {
         this.cityGraph = cityGraph;
         this.scanner = scanner;
@@ -18,34 +16,41 @@ public class ConsoleInputHandler {
 
     public void takeEmergencyInput() {
 
-        System.out.print("Enter Emergency ID: ");
-        String id = scanner.nextLine();
+        System.out.print("How many emergencies? ");
+        int count = Integer.parseInt(scanner.nextLine());
 
-        System.out.print("Enter Emergency Type (FIRE / MEDICAL / ACCIDENT / CRIME): ");
-        EmergencyType type =
-                EmergencyType.valueOf(scanner.nextLine().toUpperCase());
+        for (int i = 0; i < count; i++) {
 
-        System.out.print("Enter Severity (LOW / MEDIUM / HIGH / CRITICAL): ");
-        Severity severity =
-                Severity.valueOf(scanner.nextLine().toUpperCase());
+            System.out.println("\nEnter details for Emergency " + (i + 1));
 
-        System.out.print("Enter Location Name: ");
-        String locationName = scanner.nextLine();
+            System.out.print("Enter Emergency ID: ");
+            String id = scanner.nextLine();
 
-        Location location = findLocationByName(locationName);
+            System.out.print("Enter Emergency Type (FIRE / MEDICAL / ACCIDENT / CRIME): ");
+            EmergencyType type =
+                    EmergencyType.valueOf(scanner.nextLine().toUpperCase());
 
-        if (location == null) {
-            System.out.println("❌ Location not found in city map.");
-            return;
+            System.out.print("Enter Severity (LOW / MEDIUM / HIGH / CRITICAL): ");
+            Severity severity =
+                    Severity.valueOf(scanner.nextLine().toUpperCase());
+
+            System.out.print("Enter Location Name: ");
+            String locationName = scanner.nextLine();
+
+            Location location = findLocationByName(locationName);
+
+            if (location == null) {
+                System.out.println("Location not found. Skipping...");
+                continue;
+            }
+
+            Emergency emergency =
+                    new Emergency(id, type, severity, location);
+
+            emergencyManager.addEmergency(emergency);
+
+            System.out.println("Emergency registered successfully.");
         }
-
-        Emergency emergency =
-                new Emergency(id, type, severity, location);
-
-        emergencies.add(emergency);
-
-        System.out.println("✅ Emergency registered successfully:");
-        System.out.println(emergency);
     }
 
     private Location findLocationByName(String name) {
@@ -55,9 +60,5 @@ public class ConsoleInputHandler {
             }
         }
         return null;
-    }
-
-    public List<Emergency> getEmergencies() {
-        return emergencies;
     }
 }
